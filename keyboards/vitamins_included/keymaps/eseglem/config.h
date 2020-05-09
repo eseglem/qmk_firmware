@@ -1,4 +1,6 @@
 /*
+This is the c configuration file for the keymap
+
 Copyright 2012 Jun Wako <wakojun@gmail.com>
 Copyright 2015 Jack Humbert
 
@@ -17,25 +19,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #pragma once
-//#define USE_I2C
 
-/* Common USB Device descriptor parameters */
-#define VENDOR_ID       0x1209
-#define PRODUCT_ID      0xBEE5
-#define MANUFACTURER    eseglem
-#define PRODUCT         Dactyl Manuform
+/* Use I2C or Serial. Default is Serial */
+// #define USE_I2C
 
-#include "config_common.h"
+/* Select hand configuration */
+// Defaults:
+// Rev1: EE_HANDS
+// Rev2: SPLIT_HAND_PIN B4
 
-#ifndef NO_ACTION_MACRO
-    #define NO_ACTION_MACRO
+// You can override the defaults (rev1 doesn't support SPLIT_HAND_PIN)
+//#define EE_HANDS
+#define MASTER_LEFT
+//#define MASTER_RIGHT
+
+
+#ifdef AUDIO_ENABLE
+  #define DEFAULT_LAYER_SONGS { SONG(QWERTY_SOUND), \
+                                SONG(DVORAK_SOUND), \
+                                SONG(COLEMAK_SOUND) \
+                              }
 #endif
-#ifndef NO_ACTION_FUNCTION
-    #define NO_ACTION_FUNCTION
-#endif
-#ifndef NO_DEBUG
-    #define NO_DEBUG
-#endif // !NO_DEBUG
-#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
-    #define NO_PRINT
-#endif // !NO_PRINT
